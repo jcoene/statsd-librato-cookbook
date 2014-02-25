@@ -1,0 +1,15 @@
+description "statsd"
+author      "jcoene"
+
+env HOME=/tmp
+env LIBRATO_USER=<%= node[:statsd][:librato_user] %>
+env LIBRATO_TOKEN=<%= node[:statsd][:librato_token] %>
+env LIBRATO_SOURCE=<%= node[:statsd][:librato_source] %>
+
+setuid <%= node[:statsd][:user] %>
+start on runlevel [2345]
+stop on starting rc RUNLEVEL=[016]
+
+respawn
+
+exec /usr/local/bin/statsd <%= @args.map {|k,v| "-#{k}=#{v}" }.join(" ") %> >><%= node[:statsd][:log_file] %> 2>&1
