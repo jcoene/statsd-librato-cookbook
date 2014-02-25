@@ -49,5 +49,5 @@ end
 service "statsd" do
   provider Chef::Provider::Service::Upstart
   action [:enable, :start]
-  supports status: true, restart: false, reload: false, start: true, stop: true
+  supports status: true, restart: true, reload: false, start: true, stop: true
 end
