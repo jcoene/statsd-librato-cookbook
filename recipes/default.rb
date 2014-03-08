@@ -15,6 +15,7 @@ ark "statsd" do
   action            :install
   has_binaries      ["bin/statsd"]
   url               "https://github.com/jcoene/statsd-librato/releases/download/#{node[:statsd][:version]}/statsd-#{node[:statsd][:version]}.linux-amd64.tar.gz"
+  only_if           "test \"`/usr/local/bin/statsd -version 2>&1`\" != \"statsd-librato v#{node[:statsd][:version]}\""
   notifies :restart, "service[statsd]"
 end
 
