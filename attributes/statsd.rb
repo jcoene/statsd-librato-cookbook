@@ -1,4 +1,4 @@
-default[:statsd][:version] = "0.1.3"
+default[:statsd][:version] = "0.1.4"
 default[:statsd][:user] = "statsd"
 default[:statsd][:log_file] = "/var/log/statsd.log"
 
